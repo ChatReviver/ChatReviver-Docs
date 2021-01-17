@@ -1,0 +1,31 @@
+name: mkdocs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  
+jobs:
+  mkdocs:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Install deps
+        run: python3 -m pip install mkdocs-material mkdocs-git-revision-date-plugin
+      
+      - uses: actions/checkout@v2
+      
+      - name: Build
+        run: python3 -m mkdocs gh-deploy --force
