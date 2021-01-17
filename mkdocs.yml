@@ -1,0 +1,44 @@
+site_name: ChatReviver Documentation
+repo_url: https://github.com/ItWasAllIntended/ChatReviver-Docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+
+  favicon: /images/logo.png
+  logo: /images/logo.png
+
+  palette:
+    primary: red
+
+  icon:
+    repo: fontawesome/brands/github
+
+  features:
+    - search
+    - search.highlight
+    - tabs
+    - navigation.expand
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+  - toc:
+      permalink: "#"
+
+plugins:
+  - git-revision-date
+
+nav:
+  - Home:
+      - Intoduction: index.md
+      - Feature list: home/features.md
+      - How to invite the bot: home/inviting_the_bot.md
+      - FAQ: home/faq.md
+
+  - Custom Prefixes: custom_prefixes/custom_prefixes.md
+
+  - Reviver Commands:
+      - Would You Rather: reviver_commands/wyr.md
