@@ -40,8 +40,8 @@ The bot has support for setting your own custom prefixes.
 !!! tip
     If you ever forget your custom prefixes, you can always use the default `r?`
     or mention the bot instead of a prefix 
-    <a class="tag" onclick="navigator.clipboard.writeText('@ChatReviver#0198 ')">
-    `@ChatReviver`<span class="tag_text">Copy to clipboard</span></a> 
+    <a class="tag" onclick="navigator.clipboard.writeText('{{ bot_tag }} ')">
+    `{{ bot_name }}`<span class="tag_text">Copy to clipboard</span></a> 
     followed by a command.
 ---
 

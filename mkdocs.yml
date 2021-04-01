@@ -49,10 +49,13 @@ markdown_extensions:
 
 plugins:
   - search
+  - macros
 
   - git-revision-date-localized:
       type: timeago
       fallback_to_build_date: true
+
+
 
 nav:
   - Home:
@@ -65,3 +68,10 @@ nav:
 
   - Reviver Commands:
       - Would you rather: reviver_commands/wyr.md
+
+extra:
+  bot_name: "@ChatReviver"
+  bot_tag: "@ChatReviver#0198"
+
+  invite_link: https://discord.com/api/oauth2/authorize?client_id=691672201845407815&permissions=265280&scope=bot
+  support_server: https://discord.gg/pp7xpNf
