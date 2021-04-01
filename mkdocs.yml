@@ -52,6 +52,7 @@ plugins:
 
   - git-revision-date-localized:
       type: timeago
+      fallback_to_build_date: true
 
 nav:
   - Home:
