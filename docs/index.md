@@ -14,6 +14,7 @@ and answer any questions you may have.
 
 ## Features
 You can read about the features of the bot on the [features page](home/features)
+{{ config.site_description }}
 
 ## Inviting the bot
 The first step to using the bot is inviting it into your server.
