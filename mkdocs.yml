@@ -12,10 +12,14 @@ theme:
     repo: fontawesome/brands/github
 
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+
     - search
+    - search.suggest
     - search.highlight
-    - tabs
-    - navigation.expand
+    - search.share
 
   palette:
     # Light mode
@@ -58,4 +62,4 @@ nav:
   - Custom Prefixes: custom_prefixes/custom_prefixes.md
 
   - Reviver Commands:
-      - Would You Rather: reviver_commands/wyr.md
+      - Would you rather: reviver_commands/wyr.md
