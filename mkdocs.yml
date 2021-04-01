@@ -12,10 +12,11 @@ theme:
     repo: fontawesome/brands/github
 
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+
     - search
     - search.highlight
-    - tabs
-    - navigation.expand
 
   palette:
     # Light mode
@@ -50,12 +51,12 @@ plugins:
 
 nav:
   - Home:
-      - Intoduction: index.md
-      - Feature list: home/features.md
-      - How to invite the bot: home/inviting_the_bot.md
-      - FAQ: home/faq.md
+      - Intoduction: pages/index.md
+      - Feature list: pages/home/features.md
+      - How to invite the bot: pages/home/inviting_the_bot.md
+      - FAQ: pages/home/faq.md
 
-  - Custom Prefixes: custom_prefixes/custom_prefixes.md
+  - Custom Prefixes: pages/custom_prefixes.md
 
   - Reviver Commands:
-      - Would You Rather: reviver_commands/wyr.md
+      - Would You Rather: pages/reviver_commands/wyr.md
