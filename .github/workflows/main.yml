@@ -23,7 +23,7 @@ jobs:
           python-version: 3.9
       
       - name: Install deps
-        run: python3 -m pip install mkdocs-material mkdocs-macro-plugin mkdocs-git-revision-date-localized-plugin
+        run: python3 -m pip install mkdocs-material mkdocs-macros-plugin mkdocs-git-revision-date-localized-plugin
       
       - uses: actions/checkout@v2
       
