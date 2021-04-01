@@ -16,7 +16,6 @@ theme:
     - navigation.tabs.sticky
     - navigation.top
 
-    - search
     - search.suggest
     - search.highlight
     - search.share
@@ -49,6 +48,8 @@ markdown_extensions:
       permalink: "#"
 
 plugins:
+  - search
+
   - git-revision-date-localized:
       type: timeago
 
