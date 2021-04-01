@@ -1,9 +1,37 @@
 <style>
-.container { cursor: pointer; }
+    /* Shows the pointer when you hover over the @ */
+    .tag { cursor: pointer; }
+    
+    /* Copy to clipboard tooltip container */
+    .tag {
+      position: relative;
+      display: inline-block;
+      /*border-bottom: 1px dotted black;*/
+    }
 
-.full { display: none; }
-.container:hover .short { display: none; }
-.container:hover .full { display: inline; }
+    /* Tooltip text */
+    .tag .tag_text {
+      visibility: hidden;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      padding: 3px 0;
+      border-radius: 6px;   /* This rounds the corners for some reason */
+
+      width: 130px;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -65px; /* Use half of the width (130/2 = 65), to center */
+
+      position: absolute;
+      z-index: 1;
+    }
+    
+    /* On hover */
+    .tag:hover .tag_text {
+      visibility: visible;
+    }
+
 </style>
 
 # Custom Prefixes
@@ -11,11 +39,10 @@ The bot has support for setting your own custom prefixes.
 
 !!! tip
     If you ever forget your custom prefixes, you can always use the default `r?`
-    or a mention instead of a prefix
-    <span class="container">
-       <code><a class="short">@ChatReviver</a>
-       <a class="full" onclick="navigator.clipboard.writeText(this.textContent)">@ChatReviver#0198</a>
-    </span></code>followed by your command.
+    or mention the bot instead of a prefix 
+    <a class="tag" onclick="navigator.clipboard.writeText('@ChatReviver#0198 ')">
+    `@ChatReviver`<span class="tag_text">Copy to clipboard</span></a> 
+    followed by a command.
 ---
 
 ## Creating a custom prefix
