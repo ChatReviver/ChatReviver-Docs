@@ -59,7 +59,7 @@ nav:
       - How to invite the bot: home/inviting_the_bot.md
       - FAQ: home/faq.md
 
-  - Custom Prefixes: custom_prefixes/custom_prefixes.md
+  - Custom Prefixes: custom_prefixes.md
 
   - Reviver Commands:
       - Would you rather: reviver_commands/wyr.md
