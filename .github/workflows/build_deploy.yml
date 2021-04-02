@@ -1,4 +1,4 @@
-name: Build mkdocs and deploy
+name: Build with mkdocs and deploy to VPS
 
 on:
   workflow_dispatch:
@@ -40,14 +40,13 @@ jobs:
           echo "$SSH_PUBLIC_KEY" > ~/.ssh/deploy.pub
           sudo chmod 600 ~/.ssh/deploy
           sudo chmod 600 ~/.ssh/deploy.pub
-          ssh-keyscan -H "$HOST" > ~/.ssh/known_hosts
+          # echo $HOST
+          # ssh-keyscan -H "$HOST" > ~/.ssh/known_hosts
 
       - name: Deploy to VPS
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
-          server: sftp://${{ secrets.SFTP_HOSTNAME }}
+          server: sftp://${{ secrets.SFTP_HOSTNAME }}@${{ secrets.SFTP_PORT }}/${{ secrets.SFTP_DEPLOY_PATH }}
           username: ${{ secrets.SFTP_USERNAME }}
-          port: ${{ secrets.SFTP_PORT }}
           git-ftp-args: --key "~/.ssh/deploy" --pubkey "~/.ssh/deploy.pub"
           local-dir: ./site/
-          server_dir: ${{ secrets.SFTP_DEPLOY_PATH }}
