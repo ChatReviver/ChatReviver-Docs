@@ -30,7 +30,7 @@ jobs:
         ssh-keyscan -H "$HOST" > ~/.ssh/known_hosts
 
     - name: Deploy to VPS
-      uses: SamKirkland/FTP-Deploy-Action@4
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: sftp://${{ secrets.SFTP_HOSTNAME }}
         username: ${{ secrets.SFTP_USERNAME }}
