@@ -1,4 +1,4 @@
-name: mkdocs
+name: Build with mkdocs
 
 on:
   workflow_dispatch:
