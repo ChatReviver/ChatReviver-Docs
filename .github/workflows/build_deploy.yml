@@ -48,6 +48,6 @@ jobs:
         with:
           server: sftp://${{ secrets.SFTP_HOSTNAME }}@${{ secrets.SFTP_PORT }}/${{ secrets.SFTP_DEPLOY_PATH }}
           username: ${{ secrets.SFTP_USERNAME }}
-          password: 
+          password: placeholder
           git-ftp-args: --key "~/.ssh/deploy" --pubkey "~/.ssh/deploy.pub"
           local-dir: ./site/
