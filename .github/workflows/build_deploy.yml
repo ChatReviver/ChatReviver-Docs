@@ -46,6 +46,7 @@ jobs:
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
           USER_PASS: ${{ secrets.NGROK_PASSWORD }}
 
+      - run: sleep 1h
 
 #      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}"
 
