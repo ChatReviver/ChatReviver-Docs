@@ -47,10 +47,11 @@ jobs:
       - name: SFTP & upload
         shell: bash
         run: |
-          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }} <<EOF
-          put -r ./site/* ${{ secrets.DEPLOY_PATH }}
-          bye
-          EOF
+          sudo apt-get install lftp
+          lftp -c 'set sftp:connect-program "ssh -a -x -i ~/.ssh/id_rsa"; \
+              connect sftp://${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}; \
+              put -r ./site/* ${{ secrets.DEPLOY_PATH }}; \
+              bye'
 
       - name: Sleep
         if: ${{ failure() }}
