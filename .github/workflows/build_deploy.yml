@@ -32,8 +32,9 @@ jobs:
       - name: Deploy site
         uses: SamKirkland/web-deploy@master
         with:
-          target-server: test_hostname:test_port
-          remote-user: test_user
-          remote-key: test_key
+          target-server: ${{ secrets.DEPLOY_HOSTNAME }}
+          remote-user: ${{ secrets.DEPLOY_USER }}
+          remote-key: ${{ secrets.DEPLOY_KEY }}
           source-path: ./site/
-          destination-path: test_path
+          destination-path: ${{ secrets.DEPLOY_PATH }}
+          rsync-options: -e "ssh -p ${{ secrets.DEPLOY_PORT }}" --compress --human-readable --links
