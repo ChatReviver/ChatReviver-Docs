@@ -13,11 +13,6 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.SFTP_PRIVATE_KEY }}
-      SSH_PUBLIC_KEY: ${{ secrets.SFTP_PUBLIC_KEY }}
-      HOST: ${{ secrets.SFTP_HOSTNAME }}
-
     steps:
       - name: Setup Python
         uses: actions/setup-python@v2
@@ -32,22 +27,11 @@ jobs:
       - name: Build
         run: python3 -m mkdocs build
 
-      - name: Prepare SSH keys
-        shell: bash
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy
-          echo "$SSH_PUBLIC_KEY" > ~/.ssh/deploy.pub
-          sudo chmod 600 ~/.ssh/deploy
-          sudo chmod 600 ~/.ssh/deploy.pub
-          # echo $HOST
-          # ssh-keyscan -H "$HOST" > ~/.ssh/known_hosts
-
-      - name: Deploy to VPS
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: Deploy site
+        uses: SamKirkland/web-deploy@1.0.0
         with:
-          server: sftp://${{ secrets.SFTP_HOSTNAME }}@${{ secrets.SFTP_PORT }}/${{ secrets.SFTP_DEPLOY_PATH }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: placeholder
-          git-ftp-args: --key "~/.ssh/deploy" --pubkey "~/.ssh/deploy.pub"
-          local-dir: ./site/
+          target-server: ${{ secrets.DEPLOY_HOSTNAME }}:${{ secrets.DEPLOY_PORT }}
+          remote-user: ${{ secrets.DEPLOY_USER }}
+          remote-key: ${{ secrets.DEPLOY_KEY }}
+          source-path: ./site/
+          desstination-path: ${{ secrets.DEPLOY_PATH }}
