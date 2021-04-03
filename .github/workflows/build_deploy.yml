@@ -40,7 +40,8 @@ jobs:
           sudo chmod 600 ~/.ssh/id_rsa
 
       - name: Test
-        run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
+        run: |
+          ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
 
       - name: SFTP deploy to site
         run: |
