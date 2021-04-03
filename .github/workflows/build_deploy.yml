@@ -34,15 +34,23 @@ jobs:
         run: |
           mkdir -p ~/.ssh/
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
-          sudo chmod 600 ~/.ssh/id_rsa
+          sudo chmod 400 ~/.ssh/id_rsa
 
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
+
+      - name: Start SSH via Ngrok
+        run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
+        env:
+          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+          USER_PASS: ${{ secrets.DEPLOY_KEY }}
+
+
 #      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}"
 
-      - name: SFTP & upload
-        run: |
-          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
-          put ./site/* ${{ secrets.DEPLOY_PATH }}
-          exit
+#      - name: SFTP & upload
+#        run: |
+#          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
+#          put ./site/* ${{ secrets.DEPLOY_PATH }}
+#          exit
