@@ -32,8 +32,8 @@ jobs:
       - name: Deploy site
         uses: SamKirkland/web-deploy@master
         with:
-          target-server: ${{ secrets.DEPLOY_HOSTNAME }}:${{ secrets.DEPLOY_PORT }}
-          remote-user: ${{ secrets.DEPLOY_USER }}
-          remote-key: ${{ secrets.DEPLOY_KEY }}
+          target-server: test_hostname:test_port
+          remote-user: test_user
+          remote-key: test_key
           source-path: ./site/
-          destination-path: ${{ secrets.DEPLOY_PATH }}
+          destination-path: test_path
