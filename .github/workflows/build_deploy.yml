@@ -32,11 +32,11 @@ jobs:
       - run: whereis ssh
 
       - name: Deploy site
-        uses: SamKirkland/web-deploy@master
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
-          target-server: ${{ secrets.DEPLOY_HOSTNAME }}
-          remote-user: ${{ secrets.DEPLOY_USER }}
-          remote-key: ${{ secrets.DEPLOY_KEY }}
-          source-path: ./site/
-          destination-path: ${{ secrets.DEPLOY_PATH }}
-          rsync-options: -e "/usr/bin/ssh -p ${{ secrets.DEPLOY_PORT }}" --compress --human-readable --links
+          server: ${{ secrets.DEPLOY_HOSTNAME }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          username: ${{ secrets.DEPLOY_USER }}
+          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          local_path: ./site/*
+          remote_path: ${{ secrets.DEPLOY_PATH }}
