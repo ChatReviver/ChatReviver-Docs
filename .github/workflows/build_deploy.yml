@@ -30,7 +30,7 @@ jobs:
         run: python3 -m mkdocs build
 
 
-      - name: Set up SSL certificates
+      - name: Set up SSH certificates
         shell: bash
         run: |
           mkdir -p ~/.ssh/
@@ -47,11 +47,12 @@ jobs:
       - name: SFTP & upload
         shell: bash
         run: |
-          screen
           sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }} <<EOF
           put -r ./site/* ${{ secrets.DEPLOY_PATH }}
           bye
+          EOF
 
       - name: Sleep
+        if: ${{ failure() }}
         run: sleep 1h
 
