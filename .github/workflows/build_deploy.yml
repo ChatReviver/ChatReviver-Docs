@@ -30,8 +30,11 @@ jobs:
         run: python3 -m mkdocs build
 
       - name: Deploy site
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
         run: |
-          echo ${{ secrets.DEPLOY_SSH_KEY }} > ~/.ssh/id_rsa
+          echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
           put ./site/* ${{ secrets.DEPLOY_PATH }}
           exit
