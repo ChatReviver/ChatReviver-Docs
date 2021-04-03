@@ -30,11 +30,8 @@ jobs:
         run: python3 -m mkdocs build
 
       - name: Deploy site
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
-        with:
-          server: ${{ secrets.DEPLOY_HOSTNAME }}
-          port: ${{ secrets.DEPLOY_PORT }}
-          username: ${{ secrets.DEPLOY_USER }}
-          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
-          local_path: ./site/*
-          remote_path: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          echo ${{ secrets.DEPLOY_SSH_KEY }} > ~/.ssh/id_rsa
+          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
+          put ./site/* ${{ secrets.DEPLOY_PATH }}
+          exit
