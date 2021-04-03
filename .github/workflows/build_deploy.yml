@@ -39,6 +39,7 @@ jobs:
           ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
 
       - name: SFTP & upload
+        shell: bash
         run: |
           sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }} <<EOF
           put -r ./site/* ${{ secrets.DEPLOY_PATH }}
