@@ -39,8 +39,8 @@ jobs:
 
       - name: SFTP & upload
         run: |
-          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
-          put ./site/* ${{ secrets.DEPLOY_PATH }}
+          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }} <<EOF
+          put -r ./site/* ${{ secrets.DEPLOY_PATH }}
           exit
 
 
