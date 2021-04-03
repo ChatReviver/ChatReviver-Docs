@@ -39,10 +39,10 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
-      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}"
+#      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}"
 
-      - name: SFTP deploy to site
+      - name: SFTP & upload
         run: |
-          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
+          sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} -o StrictHostKeyChecking=no ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
           put ./site/* ${{ secrets.DEPLOY_PATH }}
           exit
