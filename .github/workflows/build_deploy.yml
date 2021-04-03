@@ -29,19 +29,17 @@ jobs:
       - name: Build
         run: python3 -m mkdocs build
 
-      - name: Deploy site
+
+      - name: Set up SSL certificates
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
-      - name: Set up SSL certificates
         run: |
           mkdir -p ~/.ssh/
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa
 
-      - name: Test
-        run: |
-          ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
+      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
 
       - name: SFTP deploy to site
         run: |
