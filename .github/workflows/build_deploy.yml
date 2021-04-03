@@ -29,6 +29,8 @@ jobs:
       - name: Build
         run: python3 -m mkdocs build
 
+      - run: whereis ssh
+
       - name: Deploy site
         uses: SamKirkland/web-deploy@master
         with:
