@@ -31,15 +31,15 @@ jobs:
 
 
       - name: Set up SSL certificates
-        env:
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
-
         run: |
           mkdir -p ~/.ssh/
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa
 
-      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
+      - run: ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOSTNAME }}"
 
       - name: SFTP deploy to site
         run: |
