@@ -34,9 +34,11 @@ jobs:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
         run: |
+          mkdir -p ~/.ssh/
           echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa_deploy
           ssh-keyscan -H "${{ secrets.DEPLOY_HOSTNAME }}" > ~/.ssh/known_hosts
+          
           sftp -i ~/.ssh/id_rsa -P ${{ secrets.DEPLOY_PORT }} ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}
           put ./site/* ${{ secrets.DEPLOY_PATH }}
           exit
