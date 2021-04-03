@@ -28,7 +28,7 @@ jobs:
         run: python3 -m mkdocs build
 
       - name: Deploy site
-        uses: SamKirkland/web-deploy
+        uses: SamKirkland/web-deploy@master
         with:
           target-server: ${{ secrets.DEPLOY_HOSTNAME }}:${{ secrets.DEPLOY_PORT }}
           remote-user: ${{ secrets.DEPLOY_USER }}
