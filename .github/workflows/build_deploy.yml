@@ -49,8 +49,8 @@ jobs:
         run: |
           sudo apt-get install lftp
           lftp -c 'set sftp:connect-program "ssh -a -x -i ~/.ssh/id_rsa"; \
-              connect sftp://${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOSTNAME }}; \
-              put -r ./site/* ${{ secrets.DEPLOY_PATH }}; \
+              connect sftp://${{ secrets.DEPLOY_USER }}:dummy@${{ secrets.DEPLOY_HOSTNAME }}; \
+              mirror -R ./site ${{ secrets.DEPLOY_PATH }}; \
               bye'
 
       - name: Sleep
