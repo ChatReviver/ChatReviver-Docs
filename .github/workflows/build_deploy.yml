@@ -34,4 +34,4 @@ jobs:
           remote-user: ${{ secrets.DEPLOY_USER }}
           remote-key: ${{ secrets.DEPLOY_KEY }}
           source-path: ./site/
-          desstination-path: ${{ secrets.DEPLOY_PATH }}
+          destination-path: ${{ secrets.DEPLOY_PATH }}
